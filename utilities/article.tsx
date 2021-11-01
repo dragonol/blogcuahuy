@@ -33,18 +33,14 @@ export async function LoadArticle(
   selectedArticleMetadata =
     selectedArticleMetadata as Components.Type.ArticleMetadata;
 
-  const fullPath = join(
-    articlesDirectory,
-    selectedArticleMetadata.title + ".md"
-  );
+  const fullPath = join(articlesDirectory, selectedArticleMetadata.fileName);
   const articleContent = fs.readFileSync(fullPath, "utf8");
 
   const mdxSource = await serialize(articleContent);
   return {
-    title: selectedArticleMetadata.title,
+    ...selectedArticleMetadata,
     content: articleContent,
     mdxSource: mdxSource,
-    createdAt: selectedArticleMetadata.createdAt,
   };
 }
 
@@ -63,6 +59,7 @@ function ParseArticleFileName(
   return {
     title: infos[1],
     createdAt: parseInt(infos[0]),
+    fileName: articleFileName,
   };
 }
 

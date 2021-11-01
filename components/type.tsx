@@ -8,4 +8,5 @@ export interface Article extends ArticleMetadata {
 export interface ArticleMetadata {
   title: string;
   createdAt: number;
+  fileName: string;
 }
