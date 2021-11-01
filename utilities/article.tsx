@@ -10,34 +10,41 @@ export async function LoadArticle(
 ): Promise<Components.Type.Article | null> {
   const trimmedNameOnURL = nameOnURL.trim();
 
-  let selectedArticleName = "";
+  let selectedArticleMetadata: Components.Type.ArticleMetadata | null = null;
 
   fs.readdirSync(articlesDirectory).every((articleFileName) => {
-    const articleName = articleFileName.replace(/\.md$/, "");
+    const articleMetadata = ParseArticleFileName(articleFileName);
     const transformedArticleFileName = RemoveVietnameseTones(
-      articleName.replace(/ /g, "-")
+      articleMetadata.title.replace(/ /g, "-")
     );
 
     if (trimmedNameOnURL == transformedArticleFileName) {
-      selectedArticleName = articleName;
+      selectedArticleMetadata = articleMetadata;
       return false;
     }
 
     return true;
   });
 
-  if (selectedArticleName == "") {
+  if (selectedArticleMetadata == null) {
     return null;
   }
 
-  const fullPath = join(articlesDirectory, selectedArticleName + ".md");
+  selectedArticleMetadata =
+    selectedArticleMetadata as Components.Type.ArticleMetadata;
+
+  const fullPath = join(
+    articlesDirectory,
+    selectedArticleMetadata.title + ".md"
+  );
   const articleContent = fs.readFileSync(fullPath, "utf8");
 
   const mdxSource = await serialize(articleContent);
   return {
-    title: selectedArticleName,
+    title: selectedArticleMetadata.title,
     content: articleContent,
     mdxSource: mdxSource,
+    createdAt: selectedArticleMetadata.createdAt,
   };
 }
 
@@ -45,11 +52,18 @@ export async function LoadAllArticleMetadatas(): Promise<
   Components.Type.ArticleMetadata[]
 > {
   return fs.readdirSync(articlesDirectory).map((articleFileName) => {
-    const articleName = articleFileName.replace(/\.md$/, "");
-    return {
-      title: articleName,
-    };
+    return ParseArticleFileName(articleFileName);
   });
+}
+
+function ParseArticleFileName(
+  articleFileName: string
+): Components.Type.ArticleMetadata {
+  const infos = articleFileName.replace(/\.md$/, "").split("_");
+  return {
+    title: infos[1],
+    createdAt: parseInt(infos[0]),
+  };
 }
 
 function RemoveVietnameseTones(str: string): string {

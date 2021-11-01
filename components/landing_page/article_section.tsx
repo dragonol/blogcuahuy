@@ -10,7 +10,12 @@ export const ArticleSection: React.FC<ArticleSectionProps> = (
   return (
     <div>
       {props.articleMetadatas.map((articleMetadata) => {
-        return <div>{articleMetadata.title}</div>;
+        return (
+          <div key={articleMetadata.title}>
+            Title:{articleMetadata.title}...CreatedAt:
+            {articleMetadata.createdAt}
+          </div>
+        );
       })}
     </div>
   );
