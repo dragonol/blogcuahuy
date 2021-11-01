@@ -1,0 +1,6 @@
+#!/bin/bash
+while IFS='' read -r rawCurrentArticleName; do
+    printf -v currentArticleName %b "$rawCurrentArticleName"
+    newArticleName=$(date +%s_)$currentArticleName
+    mv "_articles/$currentArticleName" "_articles/$newArticleName"
+done < <(git diff --cached --name-only --diff-filter=A | sed -n 's/_articles\/\(.*\)/\1/p' | sed -e 's/^"//' -e 's/"$//')
