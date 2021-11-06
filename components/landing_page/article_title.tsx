@@ -12,7 +12,9 @@ export const ArticleTitle: React.FC<Components.Type.ArticleTitleProps> = (
   const iconSrc = Utilities.GetArticleIconSrc(props.articleMetadata.type);
 
   return (
-    <Link href={`article/${props.articleMetadata.urlTitle}`}>
+    <Link
+      href={`article/${encodeURIComponent(props.articleMetadata.urlTitle)}`}
+    >
       <div className="flex space-x-6 cursor-pointer">
         <div className="lg:w-16 w-12 mt-1 flex-none">
           <Image src={iconSrc} height="1000" width="1000"></Image>
