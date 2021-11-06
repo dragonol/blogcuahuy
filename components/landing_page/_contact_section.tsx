@@ -6,6 +6,7 @@ export const ContactSection: React.FC = (): JSX.Element => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +38,7 @@ export const ContactSection: React.FC = (): JSX.Element => {
 
     setMessage("");
     setSending(false);
+    setSent(true);
   };
   return (
     <div
@@ -60,7 +62,10 @@ export const ContactSection: React.FC = (): JSX.Element => {
             autoComplete="name"
             placeholder="Tên (Không bắt buộc)"
             className="py-3 px-4 bg-gray-100 rounded-lg"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setSent(false);
+            }}
             value={name}
           />
           <textarea
@@ -69,25 +74,30 @@ export const ContactSection: React.FC = (): JSX.Element => {
             placeholder="Nội dung"
             className="py-3 px-4 resize-none bg-gray-100 rounded-lg h-44 w-full"
             maxLength={200}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setSent(false);
+            }}
             value={message}
             required
           />
           <div className="flex justify-end items-end">
             <button
-              className="font-bold text-xl flex justify-center items-center rounded-lg space-x-2 border border-black p-1 px-3"
+              className="font-bold text-xl flex justify-center items-center rounded-lg space-x-2 px-3"
               type="submit"
             >
               <div className="m-0 mt-1">Gửi </div>
-              {(!sending && (
-                <Image src="/icons/send-icon.svg" width="20" height="20" />
-              )) || (
+              {sending ? (
                 <Image
                   className="animate-spin"
                   src="/icons/spinner-icon.svg"
                   width="20"
                   height="20"
                 />
+              ) : sent ? (
+                <Image src="/icons/sent-icon.svg" width="20" height="20" />
+              ) : (
+                <Image src="/icons/send-icon.svg" width="20" height="20" />
               )}
             </button>
           </div>
