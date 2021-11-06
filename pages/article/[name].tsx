@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from "querystring";
 import Head from "next/head";
 import * as Utilities from "./../../utilities";
 import * as Components from "./../../components";
+import { serialize } from "next-mdx-remote/serialize";
 
 interface ArticlePageProps {
   article: Components.Type.Article;
@@ -34,6 +35,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
       notFound: true,
     };
   }
+
+  const mdxSource = await serialize(article.content);
+  article.mdxSource = mdxSource;
 
   return {
     props: {

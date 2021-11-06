@@ -1,9 +1,36 @@
 import fs from "fs";
 import { join } from "path";
-import { serialize } from "next-mdx-remote/serialize";
 import * as Components from "./../components";
 
 const articlesDirectory = join(process.cwd(), "_articles");
+
+export function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
+  let iconSrc = "/images/";
+  switch (articleType) {
+    case Components.Type.ArticleType_Thought:
+      iconSrc += "thought-icon.png";
+      break;
+    case Components.Type.ArticleType_Tech:
+      iconSrc += "tech-icon.png";
+      break;
+    case Components.Type.ArticleType_Music:
+      iconSrc += "music-icon.png";
+      break;
+    default:
+      break;
+  }
+  return iconSrc;
+}
+
+export function TimestampToText(timestamp: number) {
+  const createdTime = new Date(timestamp * 1000);
+
+  const createdTimeText = `ngày ${createdTime.getDate()} tháng ${
+    createdTime.getMonth() + 1
+  } năm ${createdTime.getFullYear()}`;
+
+  return createdTimeText;
+}
 
 export async function LoadArticle(
   nameOnURL: string
@@ -14,11 +41,12 @@ export async function LoadArticle(
 
   fs.readdirSync(articlesDirectory).every((articleFileName) => {
     const articleMetadata = ParseArticleFileName(articleFileName);
-    const transformedArticleFileName = RemoveVietnameseTones(
-      articleMetadata.title.replace(/ /g, "-")
-    );
 
-    if (trimmedNameOnURL == transformedArticleFileName) {
+    if (articleMetadata == null) {
+      return true;
+    }
+
+    if (trimmedNameOnURL == articleMetadata.urlTitle) {
       selectedArticleMetadata = articleMetadata;
       return false;
     }
@@ -36,30 +64,42 @@ export async function LoadArticle(
   const fullPath = join(articlesDirectory, selectedArticleMetadata.fileName);
   const articleContent = fs.readFileSync(fullPath, "utf8");
 
-  const mdxSource = await serialize(articleContent);
   return {
     ...selectedArticleMetadata,
     content: articleContent,
-    mdxSource: mdxSource,
   };
 }
 
 export async function LoadAllArticleMetadatas(): Promise<
   Components.Type.ArticleMetadata[]
 > {
-  return fs.readdirSync(articlesDirectory).map((articleFileName) => {
-    return ParseArticleFileName(articleFileName);
-  });
+  const articleFileNames = fs.readdirSync(articlesDirectory);
+  const articleMetadatas: Components.Type.ArticleMetadata[] = [];
+
+  for (let articleFileName of articleFileNames) {
+    const articleMetadata = ParseArticleFileName(articleFileName);
+    if (articleMetadata == null) {
+      continue;
+    }
+    articleMetadatas.push(articleMetadata);
+  }
+  return articleMetadatas;
 }
 
 function ParseArticleFileName(
   articleFileName: string
-): Components.Type.ArticleMetadata {
+): Components.Type.ArticleMetadata | null {
   const infos = articleFileName.replace(/\.md$/, "").split("_");
+  if (infos.length != 3) {
+    console.log("failed to parse article file name");
+    return null;
+  }
   return {
-    title: infos[1],
+    title: infos[2],
+    type: infos[1],
     createdAt: parseInt(infos[0]),
     fileName: articleFileName,
+    urlTitle: RemoveVietnameseTones(infos[2]).replace(/ /g, "-"),
   };
 }
 
