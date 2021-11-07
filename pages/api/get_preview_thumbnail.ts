@@ -6,6 +6,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { join } from "path";
 import * as Components from "./../../components";
 import chromium from "chrome-aws-lambda";
+import { time } from "console";
 
 type GetPreviewThumbnailReq = {
   nameOnURL: string;
@@ -41,6 +42,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
+const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 const cwd = process.cwd();
 
 async function CreateThumbnail(
@@ -163,6 +167,8 @@ async function CreateThumbnail(
                   }
               </style>
           </html>`);
+
+  await sleep(100);
   const screenShotBuffer = await page.screenshot();
   return screenShotBuffer;
 }
