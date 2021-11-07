@@ -3,6 +3,10 @@ import { join } from "path";
 import * as Components from "./../components";
 
 const articlesDirectory = join(process.cwd(), "_articles");
+const articleImagesDirectory = join(
+  process.cwd(),
+  "public/images/article_images"
+);
 
 export function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
   let iconSrc = "/images/";
@@ -68,6 +72,46 @@ export async function LoadArticle(
     ...selectedArticleMetadata,
     content: articleContent,
   };
+}
+
+export async function LoadArticleMetadata(
+  nameOnURL: string
+): Promise<Components.Type.ArticleMetadata | null> {
+  const trimmedNameOnURL = nameOnURL.trim();
+
+  let selectedArticleMetadata: Components.Type.ArticleMetadata | null = null;
+
+  fs.readdirSync(articlesDirectory).every((articleFileName) => {
+    const articleMetadata = ParseArticleFileName(articleFileName);
+
+    if (articleMetadata == null) {
+      return true;
+    }
+
+    if (trimmedNameOnURL == articleMetadata.urlTitle) {
+      selectedArticleMetadata = articleMetadata;
+      return false;
+    }
+
+    return true;
+  });
+
+  if (selectedArticleMetadata == null) {
+    return null;
+  }
+
+  selectedArticleMetadata =
+    selectedArticleMetadata as Components.Type.ArticleMetadata;
+
+  const fullPath = join(
+    articleImagesDirectory,
+    selectedArticleMetadata.title + ".png"
+  );
+  if (fs.existsSync(fullPath)) {
+    selectedArticleMetadata.image = selectedArticleMetadata.title + ".png";
+  }
+
+  return selectedArticleMetadata;
 }
 
 export async function LoadAllArticleMetadatas(): Promise<

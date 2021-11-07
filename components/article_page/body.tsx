@@ -18,8 +18,14 @@ export const ArticleBody: React.FC<ArticleBodyProps> = (
     <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto py-10 lg:py-36 w-11/12">
       <div className="flex flex-col space-y-6">
         <Link href="/">
-          <div className="flex items-center space-x-3 cursor-pointer">
-            <Image src="/icons/back-icon.svg" height="20" width="20"></Image>
+          <div className="flex items-center md:space-x-3 space-x-2 cursor-pointer">
+            <div className="md:w-5 w-3 flex items-center">
+              <Image
+                src="/icons/back-icon.svg"
+                height="1000"
+                width="1000"
+              ></Image>
+            </div>
             <h4 className="m-0">Quay về</h4>
           </div>
         </Link>

@@ -11,6 +11,7 @@ export interface ArticleMetadata {
   type: ArticleType;
   createdAt: number;
   fileName: string;
+  image?: string;
 }
 
 export interface NavigationButtonOnclickProps {

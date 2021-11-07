@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import * as Utilities from "./../../utilities";
 import * as Components from "./../../components";
 import { serialize } from "next-mdx-remote/serialize";
@@ -14,12 +15,25 @@ interface IParams extends ParsedUrlQuery {
 }
 
 const ArticlePage: NextPage<ArticlePageProps> = (props: ArticlePageProps) => {
+  const [baseURL, setBaseURL] = useState("");
+  useEffect(() => {
+    console.log(window.location.hostname);
+    setBaseURL(window.location.hostname);
+  }, []);
+
   return (
     <div>
-      <Head>
-        <title>blogcuahuy</title>
-        <link rel="icon" href="/icon.png" />
-      </Head>
+      <Components.Custom.CustomHead
+        title={props.article.title}
+        description={"Blog này của GenZ"}
+        date={new Date(props.article.createdAt * 1000).toISOString()}
+        image={
+          baseURL +
+          "/api/get_preview_thumbnail/?nameOnURL=" +
+          props.article.urlTitle
+        }
+        type={"article"}
+      />
 
       <Components.ArticlePage.ArticleBody article={props.article} />
     </div>

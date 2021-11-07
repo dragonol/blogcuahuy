@@ -16,22 +16,16 @@ export const ContactSection: React.FC = (): JSX.Element => {
       return;
     }
 
-    await fetch(
-      `https://api.telegram.org/bot${"2132485521:AAFGNewhCnktF6bKCpKHwFJ8MxRKU-Xu4kc"}/sendMessage`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: "@blogcuahuy",
-          parse_mode: "Markdown",
-          text: `Message from *${
-            name == "" ? "Anonymous" : name
-          }*:\n"${message}"`,
-        }),
-      }
-    )
+    await fetch(`/api/submit_message`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        message: message,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
@@ -60,7 +54,7 @@ export const ContactSection: React.FC = (): JSX.Element => {
             name="name"
             type="text"
             autoComplete="name"
-            placeholder="Tên (Không bắt buộc)"
+            placeholder="Tên"
             className="py-3 px-4 bg-gray-100 rounded-lg"
             onChange={(e) => {
               setName(e.target.value);
@@ -86,7 +80,7 @@ export const ContactSection: React.FC = (): JSX.Element => {
               className="font-bold text-xl flex justify-center items-center rounded-lg space-x-2 px-3"
               type="submit"
             >
-              <div className="m-0 mt-1">Gửi </div>
+              <div className="m-0 mt-1">{sent ? "Đã Gửi" : "Gửi"}</div>
               {sending ? (
                 <Image
                   className="animate-spin"
