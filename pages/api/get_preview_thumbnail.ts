@@ -57,12 +57,12 @@ async function CreateThumbnail(
     (originalDate.getMonth() + 1)
   ).slice(-2)}/${originalDate.getFullYear()}`;
 
-  const imageArticleType = fs.readFileSync(
-    join(cwd, `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`)
-  );
-  const base64ImageArticleType =
-    Buffer.from(imageArticleType).toString("base64");
-  const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
+  //   const imageArticleType = fs.readFileSync(
+  //     join(cwd, `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`)
+  //   );
+  //   const base64ImageArticleType =
+  //     Buffer.from(imageArticleType).toString("base64");
+  //   const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
 
   const browser = await chromium.puppeteer.launch({
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
@@ -78,7 +78,7 @@ async function CreateThumbnail(
               <body>
                   <div class="social-image-content">
                       <div>
-                          <img id="article-type" src="${dataURIArticleType}" />
+                          
                           <h1>
                               ${articleMetadata.title}
                           </h1>
