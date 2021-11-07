@@ -49,8 +49,9 @@ async function CreateThumbnail(
 ) {
   // Posts without images
 
+  const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
   const imageArticleType = fs.readFileSync(
-    path.resolve(cwd, `./public${GetArticleIconSrc(articleMetadata.type)}`)
+    path.resolve(cwd, "./public/", "." + articleTypeSrc)
   );
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
@@ -80,7 +81,7 @@ async function CreateThumbnail(
               <body>
                   <div class="social-image-content">
                       <div>
-                          <img src="${dataURIArticleType}"/>
+                          <img id="article-type" src="${dataURIArticleType}"/>
                           <h1>
                               ${articleMetadata.title}
                           </h1>
