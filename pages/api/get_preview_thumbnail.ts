@@ -168,7 +168,7 @@ async function CreateThumbnail(
                   }
                   * {
                       font-family: "Kollektif", "Be Vietnam Pro";
-                      font-weight : 700;
+                      font-weight : 600;
                   }
               </style>
           </html>`);
