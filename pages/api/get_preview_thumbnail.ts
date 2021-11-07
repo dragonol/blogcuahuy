@@ -46,7 +46,7 @@ async function CreateThumbnail(
 ) {
   // Posts without images
   const imageAvatar = fs.readFileSync(
-    join(process.cwd(), "/public/images/Huy.png")
+    join(__dirname, "/public/images/Huy.png")
   );
   const base64ImageAvatar = Buffer.from(imageAvatar).toString("base64");
   const dataURIAvatar = "data:image/jpeg;base64," + base64ImageAvatar;
@@ -59,7 +59,7 @@ async function CreateThumbnail(
 
   const imageArticleType = fs.readFileSync(
     join(
-      process.cwd(),
+      __dirname,
       `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`
     )
   );
