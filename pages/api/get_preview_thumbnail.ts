@@ -51,9 +51,10 @@ async function CreateThumbnail(
   articleMetadata: Components.Type.ArticleMetadata
 ) {
   // Posts without images
-  await sleep(500);
+
   const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
   const articleTypePath = path.resolve(cwd, "./public/", "." + articleTypeSrc);
+  await sleep(500);
   const imageArticleType = fs.readFileSync(articleTypePath);
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
