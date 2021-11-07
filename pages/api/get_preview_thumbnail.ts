@@ -41,13 +41,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
+const cwd = process.cwd();
+
 async function CreateThumbnail(
   articleMetadata: Components.Type.ArticleMetadata
 ) {
   // Posts without images
-  const imageAvatar = fs.readFileSync(
-    join(__dirname, "/public/images/Huy.png")
-  );
+  const imageAvatar = fs.readFileSync(join(cwd, "/public/images/Huy.png"));
   const base64ImageAvatar = Buffer.from(imageAvatar).toString("base64");
   const dataURIAvatar = "data:image/jpeg;base64," + base64ImageAvatar;
 
@@ -58,10 +58,7 @@ async function CreateThumbnail(
   ).slice(-2)}/${originalDate.getFullYear()}`;
 
   const imageArticleType = fs.readFileSync(
-    join(
-      __dirname,
-      `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`
-    )
+    join(cwd, `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`)
   );
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
