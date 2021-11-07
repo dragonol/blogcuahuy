@@ -13,13 +13,13 @@ export function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
   let iconSrc = "/images/";
   switch (articleType) {
     case Components.Type.ArticleType_Thought:
-      iconSrc += "thought-icon.png";
+      iconSrc += "thought.png";
       break;
     case Components.Type.ArticleType_Tech:
-      iconSrc += "tech-icon.png";
+      iconSrc += "tech.png";
       break;
     case Components.Type.ArticleType_Music:
-      iconSrc += "music-icon.png";
+      iconSrc += "music.png";
       break;
     default:
       break;

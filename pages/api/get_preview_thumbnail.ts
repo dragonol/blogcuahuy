@@ -42,9 +42,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-const sleep = (milliseconds: number) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
 const cwd = process.cwd();
 
 async function CreateThumbnail(
@@ -168,7 +165,6 @@ async function CreateThumbnail(
               </style>
           </html>`);
 
-  await sleep(100);
   const screenShotBuffer = await page.screenshot();
   return screenShotBuffer;
 }
@@ -177,13 +173,13 @@ function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
   let iconSrc = "/images/";
   switch (articleType) {
     case Components.Type.ArticleType_Thought:
-      iconSrc += "thought-icon.png";
+      iconSrc += "thought.png";
       break;
     case Components.Type.ArticleType_Tech:
-      iconSrc += "tech-icon.png";
+      iconSrc += "tech.png";
       break;
     case Components.Type.ArticleType_Music:
-      iconSrc += "music-icon.png";
+      iconSrc += "music.png";
       break;
     default:
       break;
