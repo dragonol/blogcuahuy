@@ -53,7 +53,7 @@ async function CreateThumbnail(
   // Posts without images
 
   const imageArticleType = fs.readFileSync(
-    join(cwd, `/public/images/thought-icon.png`)
+    join(cwd, `/public${GetArticleIconSrc(articleMetadata.type)}`)
   );
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
@@ -171,4 +171,22 @@ async function CreateThumbnail(
   await sleep(100);
   const screenShotBuffer = await page.screenshot();
   return screenShotBuffer;
+}
+
+function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
+  let iconSrc = "/images/";
+  switch (articleType) {
+    case Components.Type.ArticleType_Thought:
+      iconSrc += "thought-icon.png";
+      break;
+    case Components.Type.ArticleType_Tech:
+      iconSrc += "tech-icon.png";
+      break;
+    case Components.Type.ArticleType_Music:
+      iconSrc += "music-icon.png";
+      break;
+    default:
+      break;
+  }
+  return iconSrc;
 }
