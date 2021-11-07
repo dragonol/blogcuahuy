@@ -43,12 +43,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const cwd = process.cwd();
+const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 
 async function CreateThumbnail(
   articleMetadata: Components.Type.ArticleMetadata
 ) {
   // Posts without images
-
+  await sleep(500);
   const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
   const articleTypePath = path.resolve(cwd, "./public/", "." + articleTypeSrc);
   const imageArticleType = fs.readFileSync(articleTypePath);
