@@ -47,6 +47,14 @@ async function CreateThumbnail(
   articleMetadata: Components.Type.ArticleMetadata
 ) {
   // Posts without images
+
+  const imageArticleType = fs.readFileSync(
+    join(cwd, `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`)
+  );
+  const base64ImageArticleType =
+    Buffer.from(imageArticleType).toString("base64");
+  const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
+
   const imageAvatar = fs.readFileSync(join(cwd, "/public/images/Huy.png"));
   const base64ImageAvatar = Buffer.from(imageAvatar).toString("base64");
   const dataURIAvatar = "data:image/jpeg;base64," + base64ImageAvatar;
@@ -56,13 +64,6 @@ async function CreateThumbnail(
     "0" +
     (originalDate.getMonth() + 1)
   ).slice(-2)}/${originalDate.getFullYear()}`;
-
-  //   const imageArticleType = fs.readFileSync(
-  //     join(cwd, `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`)
-  //   );
-  //   const base64ImageArticleType =
-  //     Buffer.from(imageArticleType).toString("base64");
-  //   const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
 
   const browser = await chromium.puppeteer.launch({
     args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
@@ -78,7 +79,7 @@ async function CreateThumbnail(
               <body>
                   <div class="social-image-content">
                       <div>
-                          
+                          <img src="${dataURIArticleType}"/>
                           <h1>
                               ${articleMetadata.title}
                           </h1>
