@@ -54,7 +54,9 @@ async function CreateThumbnail(
 
   const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
   const articleTypePath = path.resolve(cwd, "./public/", "." + articleTypeSrc);
-  await sleep(500);
+  console.log(articleTypePath);
+  console.log(path.resolve(cwd, "./public/images/thought.png"));
+
   const imageArticleType = fs.readFileSync(articleTypePath);
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
