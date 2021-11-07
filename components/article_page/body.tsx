@@ -18,7 +18,7 @@ export const ArticleBody: React.FC<ArticleBodyProps> = (
     <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto py-10 lg:py-36 w-11/12">
       <div className="flex flex-col space-y-6">
         <Link href="/">
-          <div className="flex items-center md:space-x-3 space-x-2 cursor-pointer">
+          <div className="flex items-center space-x-3 cursor-pointer">
             <div className="md:w-5 w-3 flex items-center">
               <Image
                 src="/icons/back-icon.svg"
@@ -35,7 +35,7 @@ export const ArticleBody: React.FC<ArticleBodyProps> = (
           <div className="flex space-x-3">
             <h1 className="m-0">
               <div className="inline-block">
-                <div className="lg:w-10 w-6 mt-1 flex-none">
+                <div className="xl:w-11 lg:w-9 w-6 mt-1 flex-none">
                   <Image src={iconSrc} height="1000" width="1000"></Image>
                 </div>
               </div>{" "}
