@@ -100,6 +100,8 @@ async function CreateThumbnail(
                   </div>
               </body>
               <style>
+              @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&display=swap');
+              @import url('http://fonts.cdnfonts.com/css/kollektif');
                   html, body {
                       height : 100%;
                   }
