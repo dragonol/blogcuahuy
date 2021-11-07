@@ -50,9 +50,8 @@ async function CreateThumbnail(
   // Posts without images
 
   const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
-  const imageArticleType = fs.readFileSync(
-    path.resolve(cwd, "./public/", "." + articleTypeSrc)
-  );
+  const articleTypePath = path.resolve(cwd, "./public/", "." + articleTypeSrc);
+  const imageArticleType = fs.readFileSync(articleTypePath);
   const base64ImageArticleType =
     Buffer.from(imageArticleType).toString("base64");
   const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
