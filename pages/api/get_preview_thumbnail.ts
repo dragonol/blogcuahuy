@@ -60,7 +60,7 @@ async function CreateThumbnail(
   const imageArticleType = fs.readFileSync(
     join(
       process.cwd(),
-      `./public${Utilities.GetArticleIconSrc(articleMetadata.type)}`
+      `/public${Utilities.GetArticleIconSrc(articleMetadata.type)}`
     )
   );
   const base64ImageArticleType =
