@@ -50,18 +50,6 @@ const sleep = (milliseconds: number) => {
 async function CreateThumbnail(
   articleMetadata: Components.Type.ArticleMetadata
 ) {
-  // Posts without images
-
-  const articleTypeSrc = GetArticleIconSrc(articleMetadata.type);
-  const articleTypePath = path.resolve(cwd, "./public/", "." + articleTypeSrc);
-  console.log(articleTypePath);
-  console.log(path.resolve(cwd, "./public/images/thought.png"));
-
-  const imageArticleType = fs.readFileSync(articleTypePath);
-  const base64ImageArticleType =
-    Buffer.from(imageArticleType).toString("base64");
-  const dataURIArticleType = "data:image/jpeg;base64," + base64ImageArticleType;
-
   const imageAvatar = fs.readFileSync(join(cwd, "/public/images/Huy.png"));
   const base64ImageAvatar = Buffer.from(imageAvatar).toString("base64");
   const dataURIAvatar = "data:image/jpeg;base64," + base64ImageAvatar;
@@ -86,7 +74,6 @@ async function CreateThumbnail(
               <body>
                   <div class="social-image-content">
                       <div>
-                          <img id="article-type" src="${dataURIArticleType}"/>
                           <h1>
                               ${articleMetadata.title}
                           </h1>
@@ -100,7 +87,7 @@ async function CreateThumbnail(
                   </div>
               </body>
               <style>
-              @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&display=swap');
+              @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700&display=swap');
               @import url('http://fonts.cdnfonts.com/css/kollektif');
                   html, body {
                       height : 100%;
@@ -167,7 +154,7 @@ async function CreateThumbnail(
                       font-size : 28px;
                   }
                   * {
-                      font-family: "Kollektif", "Be Vietnam Pro";
+                      font-family: "Kollektif", "Be Vietnam Pro", sans-serif;
                       font-weight : 600;
                   }
               </style>

@@ -31,14 +31,14 @@ export const ArticleBody: React.FC<ArticleBodyProps> = (
         </Link>
 
         <div className="flex flex-col">
+          <div className="inline-block">
+            <div className="xl:w-11 lg:w-9 w-6 mt-1 flex-none">
+              <Image src={iconSrc} height="1000" width="1000"></Image>
+            </div>
+          </div>{" "}
           <p className="m-0 text-gray-400">{createdTimeText}</p>
           <div className="flex space-x-3">
             <h1 className="m-0">
-              <div className="inline-block">
-                <div className="xl:w-11 lg:w-9 w-6 mt-1 flex-none">
-                  <Image src={iconSrc} height="1000" width="1000"></Image>
-                </div>
-              </div>{" "}
               {props.article.title}
             </h1>
           </div>
