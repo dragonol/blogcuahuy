@@ -20,8 +20,8 @@ const Landing: NextPage<LandingPageProps> = (props: LandingPageProps) => {
 
       {/* <Components.LandingPage.NavigationBar /> */}
 
-      <div className="prose sm:prose-sm md:prose lg:prose-lg xl:prose-lg mx-auto">
-        <div className="w-11/12 mx-auto space-y-40">
+      <div className="">
+        <div className="w-11/12 sm:w-full mx-auto space-y-40">
           <Components.LandingPage.PersonalSection />
           <Components.LandingPage.ArticleSection
             articleMetadatas={props.articleMetadatas}

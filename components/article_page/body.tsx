@@ -15,7 +15,7 @@ export const ArticleBody: React.FC<ArticleBodyProps> = (
   const createdTimeText = Utilities.TimestampToText(props.article.createdAt);
   const iconSrc = Utilities.GetArticleIconSrc(props.article.type);
   return (
-    <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto py-10 lg:py-36 w-11/12">
+    <div className="w-11/12 sm:w-full py-10 lg:py-36">
       <div className="flex flex-col space-y-6">
         <Link href="/">
           <div className="flex items-center space-x-3 cursor-pointer">
