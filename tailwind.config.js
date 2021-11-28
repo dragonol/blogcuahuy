@@ -16,7 +16,7 @@ module.exports = {
     },
     fontFamily: {
       'normal': ['JetBrains Mono'],
-      'title': ['Kollektif']
+      'title': ['Kollektif', 'Be Vietnam Pro']
     }
   },
   variants: {
@@ -25,5 +25,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
   ]
 }

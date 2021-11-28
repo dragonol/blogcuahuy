@@ -133,7 +133,7 @@ async function CreateThumbnail(
                       display: flex;
                       flex-direction: row;
                       font-size : 28px;
-                      font-weight : 600;
+                      font-weight : 700;
                       justify-content: center;
                       line-height: 40px;
                   }
@@ -155,7 +155,7 @@ async function CreateThumbnail(
                   }
                   * {
                       font-family: "Kollektif", "Be Vietnam Pro", sans-serif;
-                      font-weight : 600;
+                      font-weight : 700;
                   }
               </style>
           </html>`);
