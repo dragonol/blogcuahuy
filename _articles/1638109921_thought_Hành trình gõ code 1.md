@@ -56,7 +56,7 @@ Thế rồi đợt dịch thứ hai trở lại, bọn mình bắt đầu khoả
 
 <CustomImage src="/images/goc-lam-viec-o-nha.jpg" caption="Wfh lại lòi là thú chăm cây :v"/>
 
-Cũng trong khoảng thời gian này team mình tuyển thêm ku **Huy** intern để phụ mình, vậy là mình trở thành một mentor. **Huy** kém mình 1 tuổi, làm remote từ Hà Nội, bị ám ảnh với leetcode nên code siêu trâu và tự bơi khá tốt, mặc dù là làm việc từ xa nhưng ku cậu cũng sáng dạ nên nói ít hiểu nhiều nên vào việc khá nhanh. Có mấy câu kiến thức ku **Huy** nó hỏi mà mình cũng không biết, thế là lật đật đi google học cấp tốc để chỉ lại cho ku cậu =))) Thế là cũng học thêm được nhiều thứ hay ho.
+Cũng trong khoảng thời gian này team mình tuyển thêm ku **Huy** intern để phụ mình, vậy là mình trở thành một mentor. **Huy** kém mình 1 tuổi, làm remote từ Hà Nội, bị ám ảnh với leetcode nên code siêu trâu và tự bơi khá tốt, mặc dù là làm việc từ xa nhưng ku cậu cũng sáng dạ, nói ít hiểu nhiều nên vào việc khá nhanh. Có mấy câu kiến thức ku **Huy** nó hỏi mà mình cũng không biết, vội lật đật đi google học cấp tốc để chỉ lại cho ku cậu =))) Thế là cũng học thêm được nhiều thứ hay ho.
 
 Do làm việc từ xa nên tất cả công việc đều chỉ giao tiếp qua những dòng tin nhắn với nhau. Cũng vì thế mà mình cảm nhận rõ được giá trị nội tại của mỗi người mà mình làm việc chung, thậm chí là có người mình cũng chưa hề gặp nhau nói chuyện ngoài đời bao giờ nhưng mình lại rất có cảm tình với họ.
 
