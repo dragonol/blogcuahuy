@@ -49,13 +49,13 @@ h3,
 h4,
 h5,
 h6,
-li,
 button {
   font-family: "Kollektif", "Be Vietnam Pro";
 }
 
 p,
 input,
+li,
 textarea {
   font-family: "JetBrains Mono";
 }
