@@ -20,8 +20,12 @@ const CustomImage: React.FC<CustomImageProps> = (
   <div className="flex justify-center w-full">
     <figure className="text-center w-9/12">
       <div className="aspect-w-1 aspect-h-1 bg-gray-100 relative">
-        <Image alt={props.caption} layout="fill" src={props.src} objectFit={'contain'}></Image>
-
+        <Image
+          alt={props.caption}
+          layout="fill" src={props.src}
+          objectFit={'contain'}
+          sizes="(max-width: 768px) 100vw, 30vw"
+        ></Image>
       </div>
       <figcaption><p className="font-title m-0">{props.caption}</p></figcaption>
     </figure>

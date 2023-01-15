@@ -30,9 +30,8 @@ export function GetArticleIconSrc(articleType: Components.Type.ArticleType) {
 export function TimestampToText(timestamp: number) {
   const createdTime = new Date(timestamp * 1000);
 
-  const createdTimeText = `ngày ${createdTime.getDate()} tháng ${
-    createdTime.getMonth() + 1
-  } năm ${createdTime.getFullYear()}`;
+  const createdTimeText = `ngày ${createdTime.getDate()} tháng ${createdTime.getMonth() + 1
+    } năm ${createdTime.getFullYear()}`;
 
   return createdTimeText;
 }
@@ -128,7 +127,7 @@ export async function LoadAllArticleMetadatas(): Promise<
     }
     articleMetadatas.push(articleMetadata);
   }
-  return articleMetadatas;
+  return articleMetadatas.sort((a, b) => a.createdAt - b.createdAt).reverse();
 }
 
 function ParseArticleFileName(

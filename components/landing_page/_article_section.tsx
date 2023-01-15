@@ -1,5 +1,4 @@
 import * as Components from "..";
-import Image from "next/image";
 
 interface ArticleSectionProps {
   articleMetadatas: Components.Type.ArticleMetadata[];
@@ -20,7 +19,7 @@ export const ArticleSection: React.FC<ArticleSectionProps> = (
 
       <hr className="border rounded-lg border-black mt-6" />
       <div className="space-y-3 lg:space-y-6 max-h-article-section overflow-y-auto">
-        {props.articleMetadatas.reverse().map((articleMetadata) => {
+        {props.articleMetadatas.map((articleMetadata) => {
           return (
             <Components.LandingPage.ArticleTitle
               key={articleMetadata.urlTitle}
